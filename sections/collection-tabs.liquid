@@ -5,3 +5,18 @@
     {{ section.settings.title }}
   </h1>
 </div>
+
+{% schema %}
+{
+  "name": "t:sections.collection-tabs.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.collection-tabs.settings.title.label",
+      "default": "Collections"
+    }
+  ]
+}
+{% endschema %}
