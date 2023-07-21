@@ -5,8 +5,17 @@
     list-style: none;
     justify-content: space-evenly;
     width: 100%;
-    border: 2px solid red;
-    height: 100px;
+    padding: 0px;
+    height: 75px;
 
+}
+
+.collection_list {
+    width: 100px;
+}
+
+.collection_titles {
+    font-size: 20px;
+    color: rgba(128, 128, 128, 0.55);
 }
 
