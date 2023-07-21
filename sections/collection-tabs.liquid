@@ -5,13 +5,16 @@
     {{ section.settings.title }}
   </h1>
   <ul class="tabs">
-    {%- for collection in collections -%}
-      <li class="collection-titles">
-        <h1>
-          {{ collection.title }}
-        </h1>
-      </li>
-    {%- endfor -%}
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'collection_tabs' %}
+          <li class="collection_tabs">
+            <h1>
+              {{ collection.title }}
+            </h1>
+          </li>
+      {% endcase %}
+    {% endfor %}
   </ul>
 </div>
 
@@ -37,7 +40,8 @@
         {
           "type": "collection_list",
           "id": "collections",
-          "label": "Collections"
+          "label": "Collections",
+          "limit": 5
         }
       ]
     }
