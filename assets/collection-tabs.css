@@ -1,6 +1,6 @@
 
 
-.tabs {
+.tabs-desktop {
     display: flex;
     list-style: none;
     justify-content: space-evenly;
@@ -8,6 +8,19 @@
     padding: 0px;
     height: 75px;
 
+}
+
+.tabs-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .tabs-desktop {
+        display: none;
+    }
+    h1 {
+        text-align: center;
+    }
 }
 
 .collection_list {
