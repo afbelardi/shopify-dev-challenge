@@ -17,16 +17,18 @@
 
 {% schema %}
 {
-  "name": "Collections",
-  "class": "collections",
+  "name": "Collection Tabs",
+  "tag": "section",
+  "class": "collection_tabs",
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "title",
       "label": "Collections Tab Title",
       "default": "Collections"
     }
   ],
+  "max_blocks": 1,
   "blocks": [
     {
       "name": "Collection Tabs",
@@ -39,6 +41,11 @@
         }
       ]
     }
-  ]
+  ],
+  "locales": {
+    "en": {
+      "title": "Collections Tabs"
+    }
+  }
 }
 {% endschema %}
