@@ -1,6 +1,7 @@
-.title-wrapper {
-    display: flex;
-    width: 100vw;
-    justify-content: ;
-}
 
+
+.tabs {
+    width: 100%;
+    border: 2px solid red;
+    height: 2000px;
+}
