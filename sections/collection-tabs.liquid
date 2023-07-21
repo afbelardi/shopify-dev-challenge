@@ -6,7 +6,7 @@
   </h1>
   <ul class="tabs">
     {%- for collection in collections -%}
-      <li>
+      <li class="collection-titles">
         <h1>
           {{ collection.title }}
         </h1>
@@ -17,14 +17,27 @@
 
 {% schema %}
 {
-  "name": "t:sections.collection-tabs.name",
-  "class": "section",
+  "name": "Collections",
+  "class": "collections",
   "settings": [
     {
       "type": "inline_richtext",
       "id": "title",
       "label": "t:sections.collection-tabs.settings.title.label",
       "default": "Collections"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection Tabs",
+      "type": "collection_tabs",
+      "settings": [
+        {
+          "type": "collection_list",
+          "id": "collections",
+          "label": "Collections"
+        }
+      ]
     }
   ]
 }
