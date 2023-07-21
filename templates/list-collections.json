@@ -2,9 +2,13 @@
   "sections": {
     "collection-tabs": {
       "type": "collection-tabs"
+    },
+    "retrieved-section": {
+      "type": "retrieved-section"
     }
   },
   "order": [
-    "collection-tabs"
+    "collection-tabs",
+    "retrieved-section"
   ]
 }
