@@ -8,11 +8,13 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'collection_tabs' %}
-          <li class="collection_tabs">
-            <h1>
-              {{ collection.title }}
-            </h1>
-          </li>
+          {% for collection in block.settings.collections %}
+            <li class="collection_tabs">
+              <h1>
+                {{ collection.title }}
+              </h1>
+            </li>
+          {% endfor %}
       {% endcase %}
     {% endfor %}
   </ul>
