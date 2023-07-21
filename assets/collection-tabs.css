@@ -10,9 +10,19 @@
 
 }
 
+.collection_list {
+    display: flex;
+    justify-content: center;
+}
+
+.tabs-mobile-wrapper {
+    display: none;
+}
+
 .tabs-mobile {
     display: none;
 }
+
 
 @media (max-width: 767px) {
     .tabs-desktop {
@@ -21,10 +31,18 @@
     h1 {
         text-align: center;
     }
-}
-
-.collection_list {
-    width: 100px;
+   
+   .tabs-mobile-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }
+    .tabs-mobile {
+        display: flex;
+        text-align: center;
+       
+    }
 }
 
 .collection_titles {

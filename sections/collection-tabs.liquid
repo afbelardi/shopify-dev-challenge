@@ -20,16 +20,18 @@
       {% endcase %}
     {% endfor %}
   </ul>
-  <select class="tabs-mobile">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'collection_tabs' %}
-          {% for collection in block.settings.collections %}
-            <option value="#{{ collection.id }}">{{ collection.title }}</option>
-          {% endfor %}
-      {% endcase %}
-    {% endfor %}
-  </select>
+  <div class="tabs-mobile-wrapper">
+    <select class="tabs-mobile">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'collection_tabs' %}
+            {% for collection in block.settings.collections %}
+              <option value="#{{ collection.id }}">{{ collection.title }}</option>
+            {% endfor %}
+        {% endcase %}
+      {% endfor %}
+    </select>
+  </div>
 </div>
 
 {% schema %}
