@@ -4,22 +4,24 @@
   <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
-  <ul class="tabs-desktop">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'collection_tabs' %}
-          {% for collection in block.settings.collections %}
-            <li class="collection_list">
-              {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
-              <h1 class="collection_titles">
-                {{ collection.title }}
-              </h1>
-              {% comment %} </a> {% endcomment %}
-            </li>
-          {% endfor %}
-      {% endcase %}
-    {% endfor %}
-  </ul>
+  <div class="tabs-desktop-wrapper">
+    <ul class="tabs-desktop">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'collection_tabs' %}
+            {% for collection in block.settings.collections %}
+              <li class="collection_list">
+                {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
+                <h1 class="collection_titles">
+                  {{ collection.title }}
+                </h1>
+                {% comment %} </a> {% endcomment %}
+              </li>
+            {% endfor %}
+        {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
   <div class="tabs-mobile-wrapper">
     <select class="tabs-mobile">
       {% for block in section.blocks %}
@@ -32,6 +34,7 @@
       {% endfor %}
     </select>
   </div>
+  <div></div>
 </div>
 
 {% schema %}

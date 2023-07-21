@@ -1,18 +1,28 @@
 
-
+.tabs-desktop-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .tabs-desktop {
     display: flex;
     list-style: none;
+    align-items: center;
     justify-content: space-evenly;
-    width: 100%;
+    width: 65%;
     padding: 0px;
     height: 75px;
+    border: 1px solid rgba(128, 128, 128, 0.302);
 
 }
 
 .collection_list {
     display: flex;
     justify-content: center;
+}
+
+.collection_list:hover {
+    border-bottom: 2px solid rgb(46, 46, 166);
 }
 
 .tabs-mobile-wrapper {
@@ -48,5 +58,11 @@
 .collection_titles {
     font-size: 20px;
     color: rgba(128, 128, 128, 0.55);
+    cursor: pointer;
+    margin: 0px;
+}
+
+.collection_titles:hover {
+    color: rgb(46, 46, 166);
 }
 
