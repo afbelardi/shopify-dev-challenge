@@ -2,9 +2,9 @@ class CollectionTabs extends HTMLElement {
     constructor() {
       super();
   
-      onClick(console.log(this.querySelectorAll('[data-url]')))
+      console.log(this.querySelectorAll('[data-url]'))
 
-     
+     function fetchCollection () {}
     
     }     
     

@@ -1,13 +1,6 @@
-{% assign firstCollection = section.blocks | first %}
-{% assign firstCollectionItems = firstCollection.settings.collections | first %}
+{% comment %}
+  {% assign firstCollection = section.blocks | first %}
+  {% assign firstCollectionItems = firstCollection.settings.collections | first %}
+{% endcomment %}
 
-<div class="page-width">
-    {% for product in firstCollectionItems.products %}
-        <div>
-          <h2>{{ product.title }}</h2>
-          <p>{{ product.description }}</p>
-          <img height=src={{ product.image }} />
-          <!-- Add other product information here -->
-        </div>
-      {% endfor %}
-</div>
+<div class="page-width"></div>
