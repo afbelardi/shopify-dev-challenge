@@ -1,6 +1,9 @@
-{% comment %}
-  {% assign firstCollection = section.blocks | first %}
-  {% assign firstCollectionItems = firstCollection.settings.collections | first %}
-{% endcomment %}
+{{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width"></div>
+<div class="page-width">
+  <div id="shopify-section-collection-products" class="shopify-section">
+    {% for product in collection.products %}
+      <h1>{{ product.title }}</h1>
+    {% endfor %}
+  </div>
+</div>

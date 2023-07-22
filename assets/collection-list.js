@@ -30,17 +30,23 @@ class CollectionTabs extends HTMLElement {
             }
 
 
-            const collectionId = tab.dataset.collectionId;
-            console.log(collectionId);
+            const collectionTitle = tab.dataset.collectionTitle;
+            console.log(collectionTitle);
 
-            fetchProductsFromCollection(collectionId)
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data.products);
+
+            fetchProductsFromCollection(collectionTitle)
+              .then((response) => response.text())
+              .then((htmlContent) => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+                const products = doc.querySelectorAll('.card');
+                console.log(products);
               })
               .catch((error) => {
                 console.error(error)
               })
+
+          
 
           })
         })
@@ -57,7 +63,7 @@ class CollectionTabs extends HTMLElement {
   customElements.define('collection-tabs', CollectionTabs);
 
 
-  function fetchProductsFromCollection(collectionId) {
+  function fetchProductsFromCollection(collectionTitle) {
     console.log('worked');
-    return fetch(`https://admin.shopify.com/store/alexander-belardi-test-store/collections/${collectionId}/products.json`);
+    return fetch(`/collections/${collectionTitle}`);
   }
