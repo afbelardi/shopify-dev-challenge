@@ -39,7 +39,7 @@ class CollectionTabs extends HTMLElement {
                 console.log(data.products);
               })
               .catch((error) => {
-                console.error(error);
+                console.error(error)
               })
 
           })
@@ -59,5 +59,5 @@ class CollectionTabs extends HTMLElement {
 
   function fetchProductsFromCollection(collectionId) {
     console.log('worked');
-    return fetch(`/collections/${collectionId}/products.json`);
+    return fetch(`https://alexander-belardi-test-store.myshopify.com/collections/collections/${collectionId}/products.json`);
   }
