@@ -1,59 +1,61 @@
 {{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'collection-tabs.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'collection-list.js' | asset_url }}" defer="defer"></script>
 
-{% assign firstCollection = section.blocks | first %}
-{% assign firstCollectionItems = firstCollection.settings.collections | first %}
+<collection-tabs>
+  {% assign firstCollection = section.blocks | first %}
+  {% assign firstCollectionItems = firstCollection.settings.collections | first %}
 
-<div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ section.settings.title }}
-  </h1>
-  <div class="tabs-desktop-wrapper">
-    <ul class="tabs-desktop">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'collection_tabs' %}
-            {% for collection in block.settings.collections %}
-              <li class="collection_list">
-                {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
-                <h1 class="collection_titles">
-                  {{ collection.title }}
-                </h1>
-                {% comment %} </a> {% endcomment %}
-              </li>
-            {% endfor %}
-        {% endcase %}
+  <div class="page-width">
+    <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ section.settings.title }}
+    </h1>
+    <collection-tabs>
+    <div class="tabs-desktop-wrapper">
+      <ul class="tabs-desktop">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'collection_tabs' %}
+              {% for collection in block.settings.collections %}
+                <li class="collection_list">
+                  {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
+                  <h1 class="collection_titles">
+                    {{ collection.title }}
+                  </h1>
+                  {% comment %} </a> {% endcomment %}
+                </li>
+              {% endfor %}
+          {% endcase %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tabs-mobile-wrapper">
+      <select class="tabs-mobile">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'collection_tabs' %}
+              {% for collection in block.settings.collections %}
+                <option value="#{{ collection.id }}">{{ collection.title }}</option>
+              {% endfor %}
+          {% endcase %}
+        {% endfor %}
+      </select>
+    </div>
+    <ul
+      class="grid product-grid"
+      role="list"
+    >
+      {% for product in firstCollectionItems.products %}
+        <li class="grid__item scroll-trigger animate--slide-in">
+          {%
+            render 'card-product',
+            card_product: product,
+          %}
+        </li>
       {% endfor %}
     </ul>
+  </collection-tabs>
   </div>
-  <div class="tabs-mobile-wrapper">
-    <select class="tabs-mobile">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'collection_tabs' %}
-            {% for collection in block.settings.collections %}
-              <option value="#{{ collection.id }}">{{ collection.title }}</option>
-            {% endfor %}
-        {% endcase %}
-      {% endfor %}
-    </select>
-  </div>
-  <ul
-    class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-    role="list"
-  >
-    {% for product in firstCollectionItems.products %}
-      <li class="grid__item">
-        {%
-          render 'card-product',
-          card_product: product,
-          media_aspect_ratio: section.settings.image_ratio,
-          image_shape: section.settings.image_shape,
-        %}
-      </li>
-    {% endfor %}
-  </ul>
-</div>
+
 
 {% schema %}
 {

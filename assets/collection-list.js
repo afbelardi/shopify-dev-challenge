@@ -1,14 +1,19 @@
 class CollectionTabs extends HTMLElement {
     constructor() {
       super();
-  
-      console.log(this.querySelectorAll('[data-url]'))
+     
+      document.addEventListener("DOMContentLoaded", function(event) {
+        const desktopTabs = this.querySelectorAll('.tabs-desktop li');
+        const firstTab = desktopTabs[0];
+        firstTab.classList.add('active');
 
-     function fetchCollection () {}
-    
+        const firstTitle = firstTab.querySelector('.collection_titles');
+        firstTitle.classList.add('active');
+       
+      })
+    }
     }     
     
-  }  
     
 
     

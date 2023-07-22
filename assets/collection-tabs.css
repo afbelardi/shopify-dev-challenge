@@ -16,12 +16,14 @@
 
 }
 
+
+
 .collection_list {
     display: flex;
     justify-content: center;
 }
 
-.collection_list:hover {
+.collection_list:hover, .collection_list.active {
     border-bottom: 2px solid rgb(46, 46, 166);
 }
 
@@ -62,7 +64,7 @@
     margin: 0px;
 }
 
-.collection_titles:hover {
+.collection_titles:hover, .collection_titles.active {
     color: rgb(46, 46, 166);
 }
 
