@@ -59,5 +59,5 @@ class CollectionTabs extends HTMLElement {
 
   function fetchProductsFromCollection(collectionId) {
     console.log('worked');
-    return fetch(`https://alexander-belardi-test-store.myshopify.com/collections/${collectionId}/products.json`);
+    return fetch(`https://admin.shopify.com/store/alexander-belardi-test-store/collections/${collectionId}/products.json`);
   }
