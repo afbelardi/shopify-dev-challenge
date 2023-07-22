@@ -1,10 +1,32 @@
 {
   "sections": {
     "collection-tabs": {
-      "type": "collection-tabs"
+      "type": "collection-tabs",
+      "blocks": {
+        "590eb13c-82dc-43cb-a92c-7471f94362e8": {
+          "type": "collection_tabs",
+          "settings": {
+            "collections": [
+              "all",
+              "bases",
+              "bedding",
+              "bedroom",
+              "mattresses"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "590eb13c-82dc-43cb-a92c-7471f94362e8"
+      ],
+      "settings": {
+        "title": "Collections"
+      }
     },
     "retrieved-section": {
-      "type": "retrieved-section"
+      "type": "retrieved-section",
+      "settings": {
+      }
     }
   },
   "order": [
