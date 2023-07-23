@@ -16,7 +16,7 @@
           {% case block.type %}
             {% when 'collection_tabs' %}
               {% for collection in block.settings.collections %}
-                <li class="collection_list" data-collection-title="{{ collection.title }}">
+                <li class="collection_list" data-collection-url="{{ collection.url }}">
                   {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
                   <h1 class="collection_titles">
                     {{ collection.title }}
@@ -41,7 +41,7 @@
       </select>
     </div>
     <div id="dynamic-content-container">
-    <ul
+    {% comment %} <ul
       class="grid product-grid"
       role="list"
     >
@@ -53,8 +53,8 @@
           %}
         </li>
       {% endfor %}
-    </ul>
-  </div>
+    </ul> {% endcomment %}
+  </div> 
   </collection-tabs>
   </div>
 
