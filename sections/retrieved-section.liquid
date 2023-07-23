@@ -1,6 +1,9 @@
 {{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
 
 <div class="page-width">
+  <section class="description">
+    {{ collection.description }}
+  </section>
   <div class="retrieved" data-section-id="retrieved-section" data-section-type="section-type">
     {% for product in collection.products %}
       <div class="each-product">

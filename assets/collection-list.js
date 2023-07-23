@@ -3,6 +3,8 @@ class CollectionTabs extends HTMLElement {
       super();
      
       document.addEventListener("DOMContentLoaded", function(event) {
+
+        //Grabbing first li to make active when the page loads
         const desktopTabs = this.querySelectorAll('.tabs-desktop li');
         const firstTab = desktopTabs[0];
         firstTab.classList.add('active');
@@ -10,12 +12,14 @@ class CollectionTabs extends HTMLElement {
         const firstCollectionTab = document.querySelector("[data-collection-url]");
         const firstCollectionUrl = firstCollectionTab.dataset.collectionUrl;
       
-        
+        //Making a call to get the products from the first collection in the list
         fetchSection(firstCollectionUrl);
 
+        //Giving the actual title the active class to change its color
         const firstTitle = firstTab.querySelector('.collection_titles');
         firstTitle.classList.add('active');
 
+        //Whenever a new collection item is clicked, the active class switches to the target
         desktopTabs.forEach((tab) => {
           tab.addEventListener('click', () => {
             const currentActiveTab = this.querySelector('.tabs-desktop li.active');
@@ -34,26 +38,39 @@ class CollectionTabs extends HTMLElement {
               clickedTitle.classList.add('active');
             }
 
-            
+            //Updating the url to whichever collection is clicked on
+            updateURL(tab.dataset.collectionUrl);
           })
         })
       })
 
-
+      //Handling getting products for collection selected through mobile dropdown
       const mobileSelect = document.querySelector('.tabs-mobile');
-          
             mobileSelect.addEventListener("change", () => {
               const selectedCollectionUrl = mobileSelect.value;
-              fetchSection(selectedCollectionUrl);
+              fetchSection(selectedCollectionUrl);   
+              updateURL(selectedCollectionUrl);
+              
             });
+            
   
-
+      //The collection title that gets selected will be the current collection that shows when
+      //switching to mobile and seeing the dropdown. Getting the collection that is clicked on
       this.querySelectorAll("[data-collection-url]").forEach( tab => { 
         tab.addEventListener('click', (e) => { 
          fetchSection(tab.dataset.collectionUrl);
+         mobileSelect.value = tab.dataset.collectionUrl;
         });
       });
 
+      //Updating the URL when a new collection is selected
+      function updateURL(collectionUrl) {
+        const newURL = window.location.origin + collectionUrl + "?sections=retrieved-section";
+        window.history.pushState({ path: newURL }, '', newURL);
+      }
+
+
+      //Rendering the section with the products from the selected collection
      async function fetchSection (collectionUrl) {
         const response = await fetch(collectionUrl + "/?sections=retrieved-section");
   
@@ -63,14 +80,10 @@ class CollectionTabs extends HTMLElement {
         const pageWidthContent = thisDocument.querySelector('.shopify-section').innerHTML;
         const targetElement = document.querySelector('[data-section-id="retrieved-section"]');
         targetElement.innerHTML = pageWidthContent;
-      
+        updateURL(collectionUrl);
       }
-     
     }
-
-
-    
-    }     
+  }     
     
     
   
