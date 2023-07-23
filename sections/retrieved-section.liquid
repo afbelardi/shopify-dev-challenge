@@ -1,10 +1,8 @@
 {{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <div data-section-id="retrieved-section" data-section-type="section-type">
-    {% for product in collection.products %}
-      <h1>{{ product.title }}</h1>
-      <p>{{ product.price }}</p>
-    {% endfor %}
-  </div>
+<div data-section-id="retrieved-section" data-section-type="section-type">
+  {% for product in collection.products %}
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.price }}</p>
+  {% endfor %}
 </div>

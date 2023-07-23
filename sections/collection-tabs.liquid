@@ -2,9 +2,6 @@
 <script src="{{ 'collection-list.js' | asset_url }}" defer="defer"></script>
 
 <collection-tabs>
-  {% assign firstCollection = section.blocks | first %}
-  {% assign firstCollectionItems = firstCollection.settings.collections | first %}
-
   <div class="page-width">
     <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ section.settings.title }}
@@ -40,21 +37,6 @@
         {% endfor %}
       </select>
     </div>
-    <div id="dynamic-content-container">
-    {% comment %} <ul
-      class="grid product-grid"
-      role="list"
-    >
-      {% for product in firstCollectionItems.products %}
-        <li class="grid__item scroll-trigger animate--slide-in">
-          {%
-            render 'card-product',
-            card_product: product,
-          %}
-        </li>
-      {% endfor %}
-    </ul> {% endcomment %}
-  </div> 
   </collection-tabs>
   </div>
 

@@ -6,6 +6,11 @@ class CollectionTabs extends HTMLElement {
         const desktopTabs = this.querySelectorAll('.tabs-desktop li');
         const firstTab = desktopTabs[0];
         firstTab.classList.add('active');
+        const firstCollectionTab = document.querySelector("[data-collection-url]");
+        const firstCollectionUrl = firstCollectionTab.dataset.collectionUrl;
+      
+        // Fetch and render the first collection
+        fetchSection(firstCollectionUrl);
 
         const firstTitle = firstTab.querySelector('.collection_titles');
         firstTitle.classList.add('active');
@@ -37,22 +42,22 @@ class CollectionTabs extends HTMLElement {
 
       this.querySelectorAll("[data-collection-url]").forEach( tab => { 
         tab.addEventListener('click', (e) => { 
-         fetchSection(tab.dataset.collectionUrl)
+         fetchSection(tab.dataset.collectionUrl);
         }) 
       })
 
      async function fetchSection (collectionUrl) {
         const response = await fetch(collectionUrl + "/?sections=retrieved-section");
   
-        const data = await response.text()
-        const sections = JSON.parse(data)
+        const data = await response.text();
+        const sections = JSON.parse(data);
         console.log(sections);
         const thisDocument = new DOMParser().parseFromString(sections['retrieved-section'], 'text/html');
         console.log(thisDocument);
-        // this.appendChild(thisDocument.getElementsByTagName('body'));
-
-        const newUrl = `${window.location.pathname}${collectionUrl}?sections=retrieved-section`;
-        history.pushState({}, '', newUrl);
+        const pageWidthContent = thisDocument.querySelector('.shopify-section').innerHTML;
+        const targetElement = document.querySelector('[data-section-id="retrieved-section"]');
+        targetElement.innerHTML = pageWidthContent;
+      
       }
      
     }
