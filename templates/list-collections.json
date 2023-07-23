@@ -7,11 +7,7 @@
           "type": "collection_tabs",
           "settings": {
             "collections": [
-              "all",
-              "bases",
-              "bedding",
-              "bedroom",
-              "mattresses"
+
             ]
           }
         }
