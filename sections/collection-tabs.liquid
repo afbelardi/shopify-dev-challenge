@@ -31,7 +31,7 @@
           {% case block.type %}
             {% when 'collection_tabs' %}
               {% for collection in block.settings.collections %}
-                <option value="#{{ collection.id }}">{{ collection.title }}</option>
+                <option value="{{ collection.url }}" data-collection-url="{{ collection.url }}">{{ collection.title }}</option>
               {% endfor %}
           {% endcase %}
         {% endfor %}

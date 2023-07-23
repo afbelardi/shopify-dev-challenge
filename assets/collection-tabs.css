@@ -55,6 +55,14 @@
         text-align: center;
        
     }
+
+    .retrieved {
+        flex-direction: column;
+    }
+
+    .each-product {
+        align-items: center;
+    }
 }
 
 .collection_titles {
@@ -66,5 +74,19 @@
 
 .collection_titles:hover, .collection_titles.active {
     color: rgb(46, 46, 166);
+}
+
+.retrieved {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.each-product {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    column-gap: 10px;
+    flex-basis: 20%;
 }
 
