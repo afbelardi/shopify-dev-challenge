@@ -8,7 +8,10 @@
     {% for product in collection.products %}
       <div class="each-product">
         <h1>{{ product.title }}</h1>
-        <p>{{ product.price }}</p>
+        {% if product.featured_image %}
+          <img loading="eager" srcset=" {{ product.featured_image | image_url: width: 300 }} ">
+        {% endif %}
+        <p>{{ product.price | money }}</p>
       </div>
     {% endfor %}
   </div>
