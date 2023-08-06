@@ -2,7 +2,7 @@ class CollectionTabs extends HTMLElement {
     constructor() {
       super();
      
-      document.addEventListener("DOMContentLoaded", function(event) {
+      document.addEventListener("DOMContentLoaded", (event) => {
 
         //Grabbing first li to make active when the page loads
         const desktopTabs = this.querySelectorAll('.tabs-desktop li');
@@ -13,7 +13,7 @@ class CollectionTabs extends HTMLElement {
         const firstCollectionUrl = firstCollectionTab.dataset.collectionUrl;
       
         //Making a call to get the products from the first collection in the list
-        fetchSection(firstCollectionUrl);
+        this.fetchSection(firstCollectionUrl);
 
         //Giving the actual title the active class to change its color
         const firstTitle = firstTab.querySelector('.collection_titles');
@@ -39,7 +39,7 @@ class CollectionTabs extends HTMLElement {
             }
 
             //Updating the url to whichever collection is clicked on
-            updateURL(tab.dataset.collectionUrl);
+            this.updateURL(tab.dataset.collectionUrl);
           })
         })
       })
@@ -48,8 +48,8 @@ class CollectionTabs extends HTMLElement {
       const mobileSelect = document.querySelector('.tabs-mobile');
             mobileSelect.addEventListener("change", () => {
               const selectedCollectionUrl = mobileSelect.value;
-              fetchSection(selectedCollectionUrl);   
-              updateURL(selectedCollectionUrl);
+              this.fetchSection(selectedCollectionUrl);   
+              this.updateURL(selectedCollectionUrl);
               
             });
             
@@ -58,30 +58,29 @@ class CollectionTabs extends HTMLElement {
       //switching to mobile and seeing the dropdown. Getting the collection that is clicked on
       this.querySelectorAll("[data-collection-url]").forEach( tab => { 
         tab.addEventListener('click', (e) => { 
-         fetchSection(tab.dataset.collectionUrl);
+         this.fetchSection(tab.dataset.collectionUrl);
          mobileSelect.value = tab.dataset.collectionUrl;
         });
       });
+    }
 
-      //Updating the URL when a new collection is selected
-      function updateURL(collectionUrl) {
-        const newURL = window.location.origin + collectionUrl + "?sections=retrieved-section";
-        window.history.pushState({ path: newURL }, '', newURL);
-      }
+     //Updating the URL when a new collection is selected
+     updateURL(collectionUrl) {
+      const newURL = window.location.origin + collectionUrl;
+      window.history.pushState({ path: newURL }, '', newURL);
+    }
 
 
-      //Rendering the section with the products from the selected collection
-     async function fetchSection (collectionUrl) {
-        const response = await fetch(collectionUrl + "/?sections=retrieved-section");
-  
-        const data = await response.text();
-        const sections = JSON.parse(data);
-        const thisDocument = new DOMParser().parseFromString(sections['retrieved-section'], 'text/html');
-        const pageWidthContent = thisDocument.querySelector('.shopify-section').innerHTML;
-        const targetElement = document.querySelector('[data-section-id="retrieved-section"]');
-        targetElement.innerHTML = pageWidthContent;
-        updateURL(collectionUrl);
-      }
+    async fetchSection (collectionUrl) {
+      const response = await fetch(collectionUrl + "/?sections=retrieved-section");
+
+      const data = await response.text();
+      const sections = JSON.parse(data);
+      const thisDocument = new DOMParser().parseFromString(sections['retrieved-section'], 'text/html');
+      const pageWidthContent = thisDocument.querySelector('.shopify-section').innerHTML;
+      const targetElement = document.querySelector('[data-section-id="retrieved-section"]');
+      targetElement.innerHTML = pageWidthContent;
+      updateURL(collectionUrl);
     }
   }     
     
