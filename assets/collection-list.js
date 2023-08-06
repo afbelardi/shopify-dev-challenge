@@ -2,7 +2,7 @@ class CollectionTabs extends HTMLElement {
     constructor() {
       super();
      
-      document.addEventListener("DOMContentLoaded", (event) => {
+      document.addEventListener("DOMContentLoaded", () => {
 
         //Grabbing first li to make active when the page loads
         const desktopTabs = this.querySelectorAll('.tabs-desktop li');

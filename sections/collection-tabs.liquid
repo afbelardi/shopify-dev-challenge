@@ -1,12 +1,11 @@
 {{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'collection-list.js' | asset_url }}" defer="defer"></script>
 
-<collection-tabs>
-  <div class="page-width">
-    <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ section.settings.title }}
-    </h1>
-    <collection-tabs>
+<div class="page-width">
+  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {{ section.settings.title }}
+  </h1>
+  <collection-tabs>
     <div class="tabs-desktop-wrapper">
       <ul class="tabs-desktop">
         {% for block in section.blocks %}
@@ -14,11 +13,9 @@
             {% when 'collection_tabs' %}
               {% for collection in block.settings.collections %}
                 <li class="collection_list" data-collection-url="{{ collection.url }}">
-                  {% comment %} <a href="/{{ collection.id }}"> {% endcomment %}
                   <h1 class="collection_titles">
                     {{ collection.title }}
                   </h1>
-                  {% comment %} </a> {% endcomment %}
                 </li>
               {% endfor %}
           {% endcase %}
@@ -31,15 +28,16 @@
           {% case block.type %}
             {% when 'collection_tabs' %}
               {% for collection in block.settings.collections %}
-                <option value="{{ collection.url }}" data-collection-url="{{ collection.url }}">{{ collection.title }}</option>
+                <option value="{{ collection.url }}" data-collection-url="{{ collection.url }}">
+                  {{ collection.title }}
+                </option>
               {% endfor %}
           {% endcase %}
         {% endfor %}
       </select>
     </div>
   </collection-tabs>
-  </div>
-
+</div>
 
 {% schema %}
 {
