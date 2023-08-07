@@ -2,37 +2,31 @@
 <script src="{{ 'collection-list.js' | asset_url }}" defer="defer"></script>
 
 <div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <h1 class="title title--primary inline-richtext">
     {{ section.settings.title }}
   </h1>
   <collection-tabs>
     <div class="tabs-desktop-wrapper">
       <ul class="tabs-desktop">
         {% for block in section.blocks %}
-          {% case block.type %}
-            {% when 'collection_tabs' %}
-              {% for collection in block.settings.collections %}
-                <li class="collection_list" data-collection-url="{{ collection.url }}">
-                  <h1 class="collection_titles">
-                    {{ collection.title }}
-                  </h1>
-                </li>
-              {% endfor %}
-          {% endcase %}
+          {% for collection in block.settings.collections %}
+            <li class="collection_list" data-collection-url="{{ collection.url }}">
+              <h1 class="collection_titles">
+                {{ collection.title }}
+              </h1>
+            </li>
+          {% endfor %}
         {% endfor %}
       </ul>
     </div>
     <div class="tabs-mobile-wrapper">
       <select class="tabs-mobile">
         {% for block in section.blocks %}
-          {% case block.type %}
-            {% when 'collection_tabs' %}
-              {% for collection in block.settings.collections %}
-                <option value="{{ collection.url }}" data-collection-url="{{ collection.url }}">
-                  {{ collection.title }}
-                </option>
-              {% endfor %}
-          {% endcase %}
+          {% for collection in block.settings.collections %}
+            <option value="{{ collection.url }}" data-collection-url="{{ collection.url }}">
+              {{ collection.title }}
+            </option>
+          {% endfor %}
         {% endfor %}
       </select>
     </div>
