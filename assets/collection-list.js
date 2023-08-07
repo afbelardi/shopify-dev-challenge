@@ -8,6 +8,10 @@ class CollectionTabs extends HTMLElement {
         const desktopTabs = this.querySelectorAll('.tabs-desktop li');
         const firstTab = desktopTabs[0];
         firstTab.classList.add('active');
+        
+        //Giving the actual title the active class to change its color
+        const firstTitle = firstTab.querySelector('.collection_titles');
+        firstTitle.classList.add('active');
 
         const firstCollectionTab = document.querySelector("[data-collection-url]");
         const firstCollectionUrl = firstCollectionTab.dataset.collectionUrl;
@@ -15,9 +19,7 @@ class CollectionTabs extends HTMLElement {
         //Making a call to get the products from the first collection in the list
         this.fetchSection(firstCollectionUrl);
 
-        //Giving the actual title the active class to change its color
-        const firstTitle = firstTab.querySelector('.collection_titles');
-        firstTitle.classList.add('active');
+     
 
         //Whenever a new collection item is clicked, the active class switches to the target
         desktopTabs.forEach((tab) => {
@@ -38,8 +40,8 @@ class CollectionTabs extends HTMLElement {
               clickedTitle.classList.add('active');
             }
 
-            //Updating the url to whichever collection is clicked on
-            this.updateURL(tab.dataset.collectionUrl);
+            // //Updating the url to whichever collection is clicked on
+            // this.updateURL(tab.dataset.collectionUrl);
           })
         })
       })
@@ -48,9 +50,7 @@ class CollectionTabs extends HTMLElement {
       const mobileSelect = document.querySelector('.tabs-mobile');
             mobileSelect.addEventListener("change", () => {
               const selectedCollectionUrl = mobileSelect.value;
-              this.fetchSection(selectedCollectionUrl);   
-              this.updateURL(selectedCollectionUrl);
-              
+              this.fetchSection(selectedCollectionUrl);  
             });
             
   
@@ -80,7 +80,7 @@ class CollectionTabs extends HTMLElement {
       const pageWidthContent = thisDocument.querySelector('.shopify-section').innerHTML;
       const targetElement = document.querySelector('[data-section-id="retrieved-section"]');
       targetElement.innerHTML = pageWidthContent;
-      updateURL(collectionUrl);
+      this.updateURL(collectionUrl);
     }
   }     
     
